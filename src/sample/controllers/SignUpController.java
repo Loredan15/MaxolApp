@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import sample.conf.DatabaseHandler;
 
 public class SignUpController {
 
@@ -16,22 +17,25 @@ public class SignUpController {
     private URL location;
 
     @FXML
-    private TextField loginField;
+    private TextField signUpLogin;
 
     @FXML
-    private PasswordField passwordField;
+    private PasswordField signUpPass;
 
     @FXML
-    private Button authButton;
+    private Button signUpRegisterButton;
 
     @FXML
-    private TextField NameField;
+    private TextField signUpFirsttName;
 
     @FXML
-    private TextField surnameField;
+    private TextField signUpLastName;
 
     @FXML
     void initialize() {
+
+        DatabaseHandler dbHandler = new DatabaseHandler();
+        signUpRegisterButton.setOnAction(actionEvent -> dbHandler.signUpUser(signUpFirsttName.getText(), signUpLastName.getText(), signUpLogin.getText(), signUpPass.getText()));
 
     }
 }

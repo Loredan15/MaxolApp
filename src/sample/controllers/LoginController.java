@@ -50,8 +50,24 @@ public class LoginController {
             stage.setScene(new Scene(root));
             stage.showAndWait();
             //--------------------------------
+
+            authButton.setOnAction(actionEvent1 -> {
+                String loginText = loginField.getText().trim();
+                String loginPass = passwordField.getText().trim();
+
+                if(!loginText.equals("") && !loginPass.equals("")){
+                    loginUser(loginText, loginPass);
+                }
+                else{
+                    System.out.println("Login and password is empty");
+                }
+            });
+
         });
 
+    }
+
+    private void loginUser(String loginText, String loginPass) {
     }
 }
 
