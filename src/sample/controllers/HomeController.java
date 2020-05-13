@@ -18,7 +18,7 @@ public class HomeController {
 
     @FXML
     void initialize() {
-        assert imageButton != null : "fx:id=\"imageButton\" was not injected: check your FXML file 'sample.fxml'.";
+        assert imageButton != null : "fx:id=\"imageButton\" was not injected: check your FXML file 'login.fxml'.";
 
     }
 }
