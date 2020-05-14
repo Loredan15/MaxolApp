@@ -1,4 +1,4 @@
-package sample.conf;
+package AppMain.conf;
 
 public class ConfigSQL {
     protected String dbHost = "localhost";
