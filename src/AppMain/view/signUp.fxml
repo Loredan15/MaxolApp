@@ -26,7 +26,7 @@
                 <Font name="System Bold" size="12.0"/>
             </font>
         </Button>
-        <TextField fx:id="signUpFirsttName" layoutX="79.0" layoutY="59.0" prefHeight="25.0" prefWidth="200.0"
+        <TextField fx:id="signUpFirstName" layoutX="79.0" layoutY="59.0" prefHeight="25.0" prefWidth="200.0"
                    promptText="Имя"/>
         <TextField fx:id="signUpLastName" layoutX="428.0" layoutY="59.0" prefHeight="25.0" prefWidth="200.0"
                    promptText="Фамилия"/>

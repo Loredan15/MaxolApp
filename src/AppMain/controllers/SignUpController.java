@@ -28,7 +28,7 @@ public class SignUpController {
     private Button signUpRegisterButton;
 
     @FXML
-    private TextField signUpFirsttName;
+    private TextField signUpFirstName;
 
     @FXML
     private TextField signUpLastName;
@@ -43,7 +43,7 @@ public class SignUpController {
     private void signUpNewUser() {
 
         DatabaseHandler dbHandler = new DatabaseHandler();
-        String firstName = signUpFirsttName.getText();
+        String firstName = signUpFirstName.getText();
         String lastName = signUpLastName.getText();
         String userName = signUpLogin.getText();
         String password = signUpPass.getText();

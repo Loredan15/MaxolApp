@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import AppMain.User;
+import AppMain.animation.Shake;
 import AppMain.conf.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,33 +41,19 @@ public class LoginController {
     @FXML
     void initialize() {
         SignUpButton.setOnAction(actionEvent -> {
-                    SignUpButton.getScene().getWindow().hide();
+            switchWindow("/AppMain/view/signUp.fxml");
+        });
 
-                    //Переключение активного окна
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("/AppMain/view/signUp.fxml"));
-                    try {
-                        loader.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Parent root = loader.getRoot();
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root));
-                    stage.showAndWait();
-                    //--------------------------------
-                });
+        authButton.setOnAction(actionEvent1 -> {
+            String loginText = loginField.getText().trim();
+            String loginPass = passwordField.getText().trim();
 
-            authButton.setOnAction(actionEvent1 -> {
-                String loginText = loginField.getText().trim();
-                String loginPass = passwordField.getText().trim();
-
-                if (!loginText.equals("") && !loginPass.equals("")) {
-                    loginUser(loginText, loginPass);
-                } else {
-                    System.out.println("Login and password is empty");
-                }
-            });
+            if (!loginText.equals("") && !loginPass.equals("")) {
+                loginUser(loginText, loginPass);
+            } else {
+                System.out.println("Login and password is empty");
+            }
+        });
 
     }
 
@@ -82,25 +69,33 @@ public class LoginController {
             while (result.next()) {
                 counter++;
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        if(counter >= 1){
+        if (counter >= 1) {
             System.out.println("login success !");
-
-            SignUpButton.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/AppMain/view/app.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
+            switchWindow("/AppMain/view/app.fxml");
+        } else {
+            Shake userLoginAnim = new Shake(loginField);
+            Shake userPassAnim = new Shake(passwordField);
+            userLoginAnim.payAnimation();
+            userPassAnim.payAnimation();
         }
+    }
+
+    public void switchWindow(String window) {
+        SignUpButton.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
     }
 }
 
